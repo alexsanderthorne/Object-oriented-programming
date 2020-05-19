@@ -4,7 +4,8 @@ public class CamaroteInf extends VIP {
 
     private double[][] localizacao;
 
-    public CamaroteInf() {
+    public CamaroteInf(double valorAd) {
+        super();
     }
 
     public CamaroteInf(double[][] localizacao) {

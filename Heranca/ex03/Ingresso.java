@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Ingresso {
 
     protected double valor;
@@ -22,8 +24,8 @@ public class Ingresso {
         return this;
     }
 
-    public double imprimeValor() {
-        return this.getValor();
+    public void imprimeValor() {
+         this.setValor(this.getValor());
     }
 
     @Override

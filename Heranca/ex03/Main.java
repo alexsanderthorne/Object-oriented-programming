@@ -13,17 +13,18 @@ public class Main {
         double[][] localizacao;
         List<Ingresso> ingressos = new ArrayList<Ingresso>();
 
-        int op = 0;
-        scan.nextLine();
-
         while (check) {
 
-            System.out.println("Digite a opção desejada");
             System.out.println("|||Criar ingressos|||");
             System.out.println("1- Ingresso Normal");
             System.out.println("2- Ingresso VIP(digite 1 - camarote superior. 2 - camarote inferior");
             System.out.println("... ... ... ...");
+
+            System.out.println("Digite a opção desejada");
+            int op = 0;
+
             op = scan.nextInt();
+            scan.nextLine();
 
             if (op == 1) {
 
@@ -31,7 +32,12 @@ public class Main {
 
                 ingressos.add(new Normal(valor));
 
-                System.out.println("Compra efetuada! valor: " + valor + "tipo do ingresso : (normal)");
+                Normal n = new Normal();
+                Ingresso i = new Ingresso();
+                // System.out.print(n.imprimeValor());
+
+                System.out.println("Compra efetuada! tipo do ingresso : (normal)");
+                System.out.println(n.toString());
 
             } else if (op == 2) {
                 int tipoCamarote;
@@ -43,12 +49,17 @@ public class Main {
                     valor = 100;
                     valorAdSup = 200;
 
-                    ingressos.add(new CamaroteSup(valor,valorAdSup));
+                    ingressos.add(new CamaroteSup(valor, valorAdSup));
 
-                    System.out.println("Compra efetuada! valor: " + valor + "tipo do ingresso : (camarote superior)");
+                    Ingresso i = new Ingresso();
+                    // Object i = (CamaroteSup) ingressos;
+                    System.out.println(i.getClass());
 
-
+                    System.out.println("Compra efetuada! tipo do ingresso : (camarote superior)");
+                    System.out.println(i.toString());
                 }
+            } else if (op == 3) {
+
             }
         }
     }
