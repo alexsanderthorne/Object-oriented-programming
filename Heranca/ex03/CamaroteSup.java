@@ -9,9 +9,9 @@ public class CamaroteSup extends VIP {
         this.valorAdSup = valorAdSup;
     }
 
-    //public CamaroteSup(double valorAdSup) {
-      //  this.valorAdSup = valorAdSup;
-    //}
+    // public CamaroteSup(double valorAdSup) {
+    // this.valorAdSup = valorAdSup;
+    // }
 
     public double getValorAdSup() {
         return valorAdSup;
@@ -21,8 +21,8 @@ public class CamaroteSup extends VIP {
         this.valorAdSup = valorAdSup;
     }
 
-    @Override
-    public double valorIngressoVip() {
+    
+    public double imprimeValor() {
         return this.valor = this.getValor() + this.getValorAdSup();
     }
 

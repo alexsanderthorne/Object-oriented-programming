@@ -4,13 +4,14 @@ public class CamaroteInf extends VIP {
 
     private double[][] localizacao;
 
-    public CamaroteInf(double valorAd) {
+    public CamaroteInf(double valorAd, double[][] localizacao) {
         super();
-    }
-
-    public CamaroteInf(double[][] localizacao) {
         this.localizacao = localizacao;
     }
+
+    // public CamaroteInf(double[][] localizacao) {
+    // this.localizacao = localizacao;
+    // }
 
     public double[][] getLocalizacao() {
         return this.localizacao;
@@ -27,6 +28,12 @@ public class CamaroteInf extends VIP {
 
     public double[][] acessarLocalizacao() {
         return this.getLocalizacao();
+
+    }
+
+    @Override
+    public double imprimeValor() {
+        return this.valor = this.getValor() + 66;
 
     }
 

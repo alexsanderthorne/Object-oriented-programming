@@ -12,4 +12,11 @@ public class Normal extends Ingresso {
         return this.valor = this.getValor();
     }
 
+    @Override
+    public double imprimeValor() {
+
+        return this.valor = this.valorIngressoNormal();
+
+    }
+
 }

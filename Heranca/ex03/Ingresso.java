@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class Ingresso {
+public abstract class Ingresso {
 
     protected double valor;
 
@@ -24,9 +24,7 @@ public class Ingresso {
         return this;
     }
 
-    public void imprimeValor() {
-         this.setValor(this.getValor());
-    }
+    public abstract double imprimeValor();
 
     @Override
     public boolean equals(Object o) {
