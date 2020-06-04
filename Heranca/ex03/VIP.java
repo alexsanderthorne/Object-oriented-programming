@@ -1,6 +1,8 @@
+package Heranca.ex03;
+
 import java.util.Objects;
 
-public class VIP extends Ingresso {
+public abstract class VIP extends Ingresso {
 
     private double valorAd;
 
@@ -25,9 +27,8 @@ public class VIP extends Ingresso {
         return this;
     }
 
-    public double valorIngressoVip() {
-        return this.valor = this.getValor() + this.getValorAd();
-    }
+    //@Override
+    public abstract double imprimeValor();
 
     @Override
     public boolean equals(Object o) {

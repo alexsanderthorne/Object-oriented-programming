@@ -1,4 +1,6 @@
-public class Ingresso {
+import java.util.Objects;
+
+public abstract class Ingresso {
 
     protected double valor;
 
@@ -22,9 +24,7 @@ public class Ingresso {
         return this;
     }
 
-    public double imprimeValor() {
-        return this.getValor();
-    }
+    public abstract double imprimeValor();
 
     @Override
     public boolean equals(Object o) {

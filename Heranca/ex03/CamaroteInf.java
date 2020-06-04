@@ -1,15 +1,19 @@
+package Heranca.ex03;
+
 import java.util.Objects;
 
 public class CamaroteInf extends VIP {
 
     private double[][] localizacao;
 
-    public CamaroteInf() {
-    }
-
-    public CamaroteInf(double[][] localizacao) {
+    public CamaroteInf(double valorAd, double[][] localizacao) {
+        super();
         this.localizacao = localizacao;
     }
+
+    // public CamaroteInf(double[][] localizacao) {
+    // this.localizacao = localizacao;
+    // }
 
     public double[][] getLocalizacao() {
         return this.localizacao;
@@ -26,6 +30,12 @@ public class CamaroteInf extends VIP {
 
     public double[][] acessarLocalizacao() {
         return this.getLocalizacao();
+
+    }
+
+    // @Override
+    public double imprimeValor() {
+        return this.valor = this.getValor() + 66;
 
     }
 
