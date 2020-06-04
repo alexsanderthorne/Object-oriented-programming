@@ -1,9 +1,11 @@
+package Heranca.ex03;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static <novaLocalizacao> void main(final String[] args) {
+    public static void main(final String[] args) {
 
         Scanner scan = new Scanner(System.in);
         boolean check = true;
@@ -55,7 +57,7 @@ public class Main {
 
                 } else if (tipoCamarote == 2) {
 
-                    valorAd = 66;
+                    valorAd = 68;
                     System.out.println("Digite a posição da cadeira do cliente(linha)");
                     int linha = scan.nextInt();
                     System.out.println("Digite a posição da cadeira do cliente(coluna)");

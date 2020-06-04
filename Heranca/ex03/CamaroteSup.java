@@ -1,3 +1,5 @@
+package Heranca.ex03;
+
 import java.util.Objects;
 
 public class CamaroteSup extends VIP {

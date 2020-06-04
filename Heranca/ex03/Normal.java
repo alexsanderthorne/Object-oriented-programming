@@ -1,3 +1,5 @@
+package Heranca.ex03;
+
 public class Normal extends Ingresso {
 
     public Normal() {
@@ -12,7 +14,7 @@ public class Normal extends Ingresso {
         return this.valor = this.getValor();
     }
 
-    @Override
+    //@Override
     public double imprimeValor() {
 
         return this.valor = this.valorIngressoNormal();

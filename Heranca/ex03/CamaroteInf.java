@@ -1,3 +1,5 @@
+package Heranca.ex03;
+
 import java.util.Objects;
 
 public class CamaroteInf extends VIP {
@@ -31,7 +33,7 @@ public class CamaroteInf extends VIP {
 
     }
 
-    @Override
+    // @Override
     public double imprimeValor() {
         return this.valor = this.getValor() + 66;
 

@@ -1,3 +1,5 @@
+package Heranca.ex03;
+
 import java.util.Objects;
 
 public abstract class VIP extends Ingresso {
@@ -25,7 +27,7 @@ public abstract class VIP extends Ingresso {
         return this;
     }
 
-    @Override
+    //@Override
     public abstract double imprimeValor();
 
     @Override
