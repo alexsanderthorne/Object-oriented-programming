@@ -1,7 +1,10 @@
-#from Carro import Carro
+from Carro import Carro
+
 class Main(Carro):
+
     op = 0
     check = True
+    c1 = Carro()
 
     while(check):
 
@@ -15,7 +18,7 @@ class Main(Carro):
     if op == 1:
 
         km = int(input("Digite a quilometragem : "))
-        c1 = Carro()
+
         c1.carro.setEficiencia(20)
         c1.setCombustivel(100)
         c1.andar()

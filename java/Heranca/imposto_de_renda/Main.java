@@ -1,5 +1,3 @@
-package Heranca.imposto_de_renda;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,7 +8,7 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         String nome, cnpj, cpf;
         double rendaBruta = 0;
-        // ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
+        ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
         boolean check = true;
         int op = 0;
 
@@ -35,10 +33,10 @@ public class Main {
                 tipo_pessoa = scan.nextInt();
                 if (tipo_pessoa == 1) {
 
-                    PessoaFisica p1 = new PessoaFisica();
-                    p1.setNome("joe cara de porco");
-                    p1.setRendaBruta(1000);
-                    p1.setCpf("0923r4fsdvged");
+                    // PessoaFisica p1 = new PessoaFisica();
+                    // p1.setNome("joe cara de porco");
+                    // p1.setRendaBruta(1000);
+                    // p1.setCpf("0923r4fsdvged");
 
                     System.out.println("Pessoa física adicionada com sucesso!");
                     System.out.println("*** *** ***");
@@ -53,7 +51,7 @@ public class Main {
                     System.out.println("Digite a porra do cnpj");
                     cnpj = scan.nextLine();
 
-                    PessoaJuridica p1 = new PessoaJuridica(nome, rendaBruta, cnpj);
+                    pessoas.add(new PessoaJuridica(nome, rendaBruta, cnpj));
 
                     System.out.println("Pessoa física adicionada com sucesso!");
                     System.out.println("*** *** ***");
