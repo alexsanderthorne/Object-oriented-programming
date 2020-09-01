@@ -28,6 +28,104 @@ public class Poupanca extends Conta {
 
     }
 
+    public void cadastrarPoupanca(String numero, String numeroAgencia, String nomeAgencia, String nome, String cpf,
+            double saldo, double juros) {
+
+        clientesP.add(new Cliente(nome, cpf));
+        contasPoupancas.add(new Poupanca(numero, numeroAgencia, nomeAgencia, banco, c, saldo, juros, clientes,
+                clientesP, contas, contasPoupancas));
+
+    }
+
+    public void depositarPoupanca(String cpf, double valor) throws Exception {
+
+        if (contasPoupancas.size() > 0) {
+
+            for (int i = 0; i < contasPoupancas.size(); i++) {
+
+                if (clientesP.get(i).getCpf().equals(cpf)) {
+
+                    System.out.println("saldo : " + contasPoupancas.get(i).getSaldo());
+                    contasPoupancas.get(i).setSaldo(contasPoupancas.get(i).getSaldo() + valor);
+                    System.out.println("Deposito realizado!!!");
+                    System.out.println("saldo : " + contasPoupancas.get(i).getSaldo());
+
+                    break;
+
+                }
+            }
+
+        } else {
+
+            throw new Exception("Não há conta cadastrada.");
+        }
+
+    }
+
+    public void renderJuros(String cpf, double juros) throws Exception {
+
+        if (contasPoupancas.size() > 0) {
+
+            for (int i = 0; i < contasPoupancas.size(); i++) {
+
+                if (clientesP.get(i).getCpf().equals(cpf)) {
+
+                    System.out.println("saldo : " + contasPoupancas.get(i).getSaldo());
+                    contasPoupancas.get(i).setSaldo(contasPoupancas.get(i).getSaldo() + juros);
+                    System.out.println(" Dia de rendimento!!!");
+                    System.out.println("saldo atualizado : " + contasPoupancas.get(i).getSaldo());
+
+                }
+
+                if (!(clientesP.get(i).getCpf().equals(cpf))) {
+
+                    System.out.println("Cliente não encontrado!");
+
+                }
+            }
+        }
+    }
+
+    public void consultarPoupanca(String num, String name) throws Exception {
+
+        if (contasPoupancas.size() > 0) {
+
+            for (int i = 0; i < contasPoupancas.size(); i++) {
+
+                if (contasPoupancas.get(i).getNumeroAgencia().equals(num)
+                        && contasPoupancas.get(i).getNomeAgencia().equals(name)) {
+
+                    System.out.println("NomeCliente : " + clientesP.get(i).getNome() + " CpfCliente : "
+                            + clientesP.get(i).getCpf());
+
+                }
+
+            }
+
+        } else {
+
+            throw new Exception("Conta não cadastrada!.");
+        }
+
+    }
+
+    public void listarPoupanca() {
+
+        if (contasPoupancas.size() > 0) {
+
+            for (int i = 0; i < contasPoupancas.size(); i++) {
+
+                System.out.println("Dados da conta : " + contasPoupancas.get(i).toString());
+
+            }
+
+        } else {
+
+            System.out.println("Não há contas cadastradas!");
+
+        }
+    }
+
     public double getJuros() {
         return this.juros;
     }
@@ -74,91 +172,6 @@ public class Poupanca extends Conta {
 
     public void setContasPoupancas(ArrayList<Poupanca> contasPoupancas) {
         this.contasPoupancas = contasPoupancas;
-    }
-
-    public void cadastrarPoupanca(String numero, String numeroAgencia, String nomeAgencia, String nome, String cpf,
-            double saldo, double juros) {
-
-        clientesP.add(new Cliente(nome, cpf));
-        contasPoupancas.add(new Poupanca(numero, numeroAgencia, nomeAgencia, banco, c, saldo, juros, clientes,
-                clientesP, contas, contasPoupancas));
-
-    }
-
-    public void depositarPoupanca(String cpf, double valor) throws Exception {
-
-        if (contasPoupancas.size() > 0) {
-
-            for (int i = 0; i < contasPoupancas.size();) {
-                
-                if (clientesP.get(i).getCpf().equals(cpf)) {
-
-                    System.out.println("saldo : " + contasPoupancas.get(i).getSaldo());
-                    contasPoupancas.get(i).setSaldo(contasPoupancas.get(i).getSaldo() + valor);
-                    System.out.println("Deposito realizado!!!");
-                    System.out.println("saldo : " + contasPoupancas.get(i).getSaldo());
-
-                    break;
-
-                }
-            }
-
-        } else {
-
-            throw new Exception("Não há conta cadastrada.");
-        }
-
-    }
-
-    public void consultarPoupanca(String num, String name) throws Exception {
-
-        if (contasPoupancas.size() > 0) {
-
-            for (int i = 0; i < contasPoupancas.size(); i++) {
-
-                if (contasPoupancas.get(i).getNumeroAgencia().equals(num)
-                        && contasPoupancas.get(i).getNomeAgencia().equals(name)) {
-
-                    System.out.println("NomeCliente : " + clientesP.get(i).getNome() + " CpfCliente : "
-                            + clientesP.get(i).getCpf());
-
-                } else {
-
-                    throw new Exception("Cliente não encontrado!");
-
-                }
-
-            }
-
-        } else {
-
-            throw new Exception("Conta não cadastrada!.");
-        }
-
-    }
-
-    public void listarPoupanca() {
-
-        if (contasPoupancas.size() > 0) {
-
-            for (int i = 0; i < contasPoupancas.size();) {
-
-                System.out.println("Dados da conta : " + contasPoupancas.get(i).toString());
-                break;
-
-            }
-
-        } else {
-
-            System.out.println("Não há contas cadastradas!");
-
-        }
-    }
-
-    public void renderJuros(String cpf) {
-
-        this.setSaldo(this.getSaldo() + juros);
-
     }
 
     @Override

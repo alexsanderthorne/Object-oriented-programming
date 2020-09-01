@@ -1,6 +1,4 @@
 import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
 
 public class Main {
 
@@ -11,13 +9,13 @@ public class Main {
         double saldo = 0, juros = 0;
         Scanner scan = new Scanner(System.in);
 
-        List<Banco> bancos = new ArrayList<Banco>();
-        ArrayList<Conta> contas = new ArrayList<Conta>();
-        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-        ArrayList<Poupanca> contasPoupancas = new ArrayList<Poupanca>();
-        ArrayList<Poupanca> clientesP = new ArrayList<Poupanca>();
+       // List<Banco> bancos = new ArrayList<Banco>();
+       //// ArrayList<Conta> contas = new ArrayList<Conta>();
+       // ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+       // ArrayList<Poupanca> contasPoupancas = new ArrayList<Poupanca>();
+       // ArrayList<Poupanca> clientesP = new ArrayList<Poupanca>();
 
-        Cliente c = new Cliente();
+        //Cliente c = new Cliente();
         Conta conta = new Conta();
         Poupanca p = new Poupanca();
 
@@ -106,10 +104,16 @@ public class Main {
 
                     p.depositarPoupanca(cpf, valor);
 
-                } else if (op == 3) {
-
-                    break;
                 }
+
+            } else if (op == 3) {
+
+                System.out.println("Digite o cpf : ");
+                cpf = scan.next();
+                juros = 100;
+
+                p.renderJuros(cpf, juros);
+
 
             } else if (op == 4) {
 
@@ -141,6 +145,21 @@ public class Main {
 
                     p.consultarPoupanca(num, name);
                 }
+
+            }
+
+            else if(op == 5){
+
+                System.out.println("Alteração de dados");
+                System.out.println("*****************");
+                System.out.println("Digite o nome do cliente : ");
+                nome = scan.next();
+                System.out.println("Digite o novo numero : ");
+                numeroAgencia = scan.next();
+                System.out.println("Digite o nome da nova agencia : ");
+                nomeAgencia = scan.next();
+
+                p.alterarDadosConta(nome, numeroAgencia, nomeAgencia);
 
             }
 
@@ -177,6 +196,7 @@ public class Main {
 
             }
         }
+
         scan.close();
     }
 

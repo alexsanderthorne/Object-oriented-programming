@@ -4,7 +4,6 @@ public class Banco {
 
     private String numeroAgencia;
     private String nomeAgencia;
-    // protected List<Cliente> clientes = new ArrayList<Cliente>();
 
     public Banco() {
     }

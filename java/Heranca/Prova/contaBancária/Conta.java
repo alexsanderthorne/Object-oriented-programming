@@ -26,6 +26,95 @@ public class Conta extends Banco {
         this.contas = contas;
     }
 
+    public void cadastrarConta(String numero, String numeroAgencia, String nomeAgencia, String nome, String cpf,
+            double saldo) {
+
+        clientes.add(new Cliente(nome, cpf));
+        contas.add(new Conta(numero, numeroAgencia, nomeAgencia, banco, c, saldo, clientes, contas));
+    }
+
+    public void depositarConta(String cpf, double valor) throws Exception {
+
+        if (contas.size() > 0) {
+
+            for (int i = 0; i < contas.size(); i++) {
+
+                if (clientes.get(i).getCpf().equals(cpf)) {
+                    // this.saldo = this.getSaldo() + valor;
+                    System.out.println("saldo : " + contas.get(i).getSaldo());
+                    contas.get(i).setSaldo(contas.get(i).getSaldo() + valor);
+                    System.out.println("Deposito realizado!!!");
+                    System.out.println("saldo : " + contas.get(i).getSaldo());
+                }
+            }
+
+        } else {
+
+            throw new Exception("Conta não cadastrada!.");
+        }
+    }
+
+    public void alterarDadosConta(String nome, String numeroAgencia, String nomeAgencia) {
+
+        if (contas.size() > 0) {
+
+            for (int i = 0; i < contas.size(); i++) {
+                System.out.println("Teste");
+                if (clientes.get(i).getNome().equals(nome)) {
+
+                    contas.get(i).setNumeroAgencia(numeroAgencia);
+                    contas.get(i).setNomeAgencia(nomeAgencia);
+                    System.out.println("DADOS ATUALIZADOs.");
+
+                }
+            }
+
+        } else {
+            System.out.println("Não possui contas cadastradas.");
+        }
+
+    }
+
+    public void consultarConta(String num, String name) throws Exception {
+
+        if (contas.size() > 0) {
+
+            for (int i = 0; i < contas.size(); i++) {
+
+                if (contas.get(i).getNumeroAgencia().equals(num) && contas.get(i).getNomeAgencia().equals(name)) {
+
+                    System.out.println(
+                            "NomeCliente : " + clientes.get(i).getNome() + " CpfCliente : " + clientes.get(i).getCpf());
+
+                }
+
+            }
+
+        } else {
+
+            throw new Exception("Conta não cadastrada!.");
+        }
+
+    }
+
+    public void listarContas() {
+
+        try {
+
+            for (int i = 0; i < contas.size(); i++) {
+
+                System.out.println("Dados da conta : " + contas.get(i).toString());
+
+            }
+
+        } catch (NullPointerException r) {
+
+            System.out.println("Não há contas cadastradas!");
+
+        }
+
+    }
+
     public String getNumero() {
         return this.numero;
     }
@@ -102,78 +191,6 @@ public class Conta extends Banco {
     public Conta contas(ArrayList<Conta> contas) {
         this.contas = contas;
         return this;
-    }
-
-    public void cadastrarConta(String numero, String numeroAgencia, String nomeAgencia, String nome, String cpf,
-            double saldo) {
-
-        clientes.add(new Cliente(nome, cpf));
-        contas.add(new Conta(numero, numeroAgencia, nomeAgencia, banco, c, saldo, clientes, contas));
-    }
-
-    public void depositarConta(String cpf, double valor) throws Exception {
-
-        if (contas.size() > 0) {
-
-            for (int i = 0; i < contas.size(); i++) {
-
-                if (clientes.get(i).getCpf().equals(cpf)) {
-                    // this.saldo = this.getSaldo() + valor;
-                    System.out.println("saldo : " + contas.get(i).getSaldo());
-                    contas.get(i).setSaldo(contas.get(i).getSaldo() + valor);
-                    System.out.println("Deposito realizado!!!");
-                    System.out.println("saldo : " + contas.get(i).getSaldo());
-                }
-            }
-
-        } else {
-
-            throw new Exception("Conta não cadastrada!.");
-        }
-    }
-
-    public void consultarConta(String num, String name) throws Exception {
-
-        if (contas.size() > 0) {
-
-            for (int i = 0; i < contas.size(); i++) {
-
-                if (contas.get(i).getNumeroAgencia().equals(num) && contas.get(i).getNomeAgencia().equals(name)) {
-
-                    System.out.println(
-                            "NomeCliente : " + clientes.get(i).getNome() + " CpfCliente : " + clientes.get(i).getCpf());
-
-                } else {
-
-                    throw new Exception("Cliente não encontrado!");
-
-                }
-
-            }
-
-        } else {
-
-            throw new Exception("Conta não cadastrada!.");
-        }
-
-    }
-
-    public void listarContas() {
-
-        try {
-
-            for (int i = 0; i < contas.size(); i++) {
-
-                System.out.println("Dados da conta : " + contas.get(i).toString());
-
-            }
-
-        } catch (NullPointerException r) {
-
-            System.out.println("Não há contas cadastradas!");
-
-        }
-
     }
 
     @Override
