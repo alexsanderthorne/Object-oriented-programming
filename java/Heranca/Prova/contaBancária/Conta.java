@@ -10,7 +10,7 @@ public class Conta extends Banco {
 
     private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
     private ArrayList<Conta> contas = new ArrayList<Conta>();
-    ArrayList<Poupanca> contasPoupancas = new ArrayList<Poupanca>();
+    // ArrayList<Poupanca> contasPoupancas = new ArrayList<Poupanca>();
 
     public Conta() {
     }
@@ -29,28 +29,42 @@ public class Conta extends Banco {
     public void cadastrarConta(String numero, String numeroAgencia, String nomeAgencia, String nome, String cpf,
             double saldo) {
 
-        clientes.add(new Cliente(nome, cpf));
-        contas.add(new Conta(numero, numeroAgencia, nomeAgencia, banco, c, saldo, clientes, contas));
+        do {
+
+            clientes.add(new Cliente(nome, cpf));
+            contas.add(new Conta(numero, numeroAgencia, nomeAgencia, banco, c, saldo, clientes, contas));
+
+        } while (contas.size() > 5);
+        System.out.println(contas.size());
+
     }
 
     public void depositarConta(String cpf, double valor) throws Exception {
 
         if (contas.size() > 0) {
 
-            for (int i = 0; i < contas.size(); i++) {
+            try {
 
-                if (clientes.get(i).getCpf().equals(cpf)) {
-                    // this.saldo = this.getSaldo() + valor;
-                    System.out.println("saldo : " + contas.get(i).getSaldo());
-                    contas.get(i).setSaldo(contas.get(i).getSaldo() + valor);
-                    System.out.println("Deposito realizado!!!");
-                    System.out.println("saldo : " + contas.get(i).getSaldo());
+                for (int i = 0; i < contas.size(); i++) {
+
+                    if (clientes.get(i).getCpf().equals(cpf)) {
+                        // this.saldo = this.getSaldo() + valor;
+                        System.out.println("saldo : " + contas.get(i).getSaldo());
+                        contas.get(i).setSaldo(contas.get(i).getSaldo() + valor);
+                        System.out.println("Deposito realizado!!!");
+                        System.out.println("saldo : " + contas.get(i).getSaldo());
+                    }
                 }
+
+            } catch (Exception e) {
+
+                System.err.println("\nException : %s\n" + e.getMessage());
+                System.out.println("Conta não encontrada");
             }
 
         } else {
 
-            throw new Exception("Conta não cadastrada!.");
+            System.out.println("Conta não cadastrada!.");
         }
     }
 
@@ -59,17 +73,20 @@ public class Conta extends Banco {
         if (contas.size() > 0) {
 
             for (int i = 0; i < contas.size(); i++) {
-                System.out.println("Teste");
-                if (clientes.get(i).getNome().equals(nome)) {
 
+                if ((clientes).get(i).getNome().equals(nome)) {
+                   
                     contas.get(i).setNumeroAgencia(numeroAgencia);
                     contas.get(i).setNomeAgencia(nomeAgencia);
+                    System.out.println(contas.get(i).getNumeroAgencia());
+                    System.out.println(contas.get(i).getNomeAgencia());
                     System.out.println("DADOS ATUALIZADOs.");
 
                 }
             }
 
         } else {
+
             System.out.println("Não possui contas cadastradas.");
         }
 
@@ -79,20 +96,28 @@ public class Conta extends Banco {
 
         if (contas.size() > 0) {
 
-            for (int i = 0; i < contas.size(); i++) {
+            try {
 
-                if (contas.get(i).getNumeroAgencia().equals(num) && contas.get(i).getNomeAgencia().equals(name)) {
+                for (int i = 0; i < contas.size(); i++) {
 
-                    System.out.println(
-                            "NomeCliente : " + clientes.get(i).getNome() + " CpfCliente : " + clientes.get(i).getCpf());
+                    if (contas.get(i).getNumeroAgencia().equals(num) && contas.get(i).getNomeAgencia().equals(name)) {
+
+                        System.out.println("NomeCliente : " + clientes.get(i).getNome() + " CpfCliente : "
+                                + clientes.get(i).getCpf());
+
+                    }
 
                 }
 
+            } catch (NullPointerException nullPointerException) {
+
+                System.err.println("\nException : %s\n" + nullPointerException);
+                System.out.println("Conta não encontrada");
             }
 
         } else {
 
-            throw new Exception("Conta não cadastrada!.");
+            System.out.println("Conta não cadastrada!.");
         }
 
     }
