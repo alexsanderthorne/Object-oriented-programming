@@ -9,13 +9,6 @@ public class Main {
         double saldo = 0, juros = 0;
         Scanner scan = new Scanner(System.in);
 
-       // List<Banco> bancos = new ArrayList<Banco>();
-       //// ArrayList<Conta> contas = new ArrayList<Conta>();
-       // ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-       // ArrayList<Poupanca> contasPoupancas = new ArrayList<Poupanca>();
-       // ArrayList<Poupanca> clientesP = new ArrayList<Poupanca>();
-
-        //Cliente c = new Cliente();
         Conta conta = new Conta();
         Poupanca p = new Poupanca();
 
@@ -114,7 +107,6 @@ public class Main {
 
                 p.renderJuros(cpf, juros);
 
-
             } else if (op == 4) {
 
                 int tipoConta = 0;
@@ -132,6 +124,7 @@ public class Main {
                     System.out.println("... ... ...");
 
                     conta.consultarConta(num, name);
+                    scan.nextLine();
 
                 } else {
 
@@ -144,22 +137,44 @@ public class Main {
                     System.out.println("... ... ...");
 
                     p.consultarPoupanca(num, name);
+                    scan.nextLine();
+
                 }
 
             }
 
-            else if(op == 5){
+            else if (op == 5) {
 
-                System.out.println("Alteração de dados");
-                System.out.println("*****************");
-                System.out.println("Digite o nome do cliente : ");
-                nome = scan.next();
-                System.out.println("Digite o novo numero : ");
-                numeroAgencia = scan.next();
-                System.out.println("Digite o nome da nova agencia : ");
-                nomeAgencia = scan.next();
+                System.out.println("Digite 1 para Alterar os dados da Conta - 2 Conta poupança");
+                int tipo_conta = scan.nextInt();
+                
+                if (tipo_conta == 1) {
 
-                p.alterarDadosConta(nome, numeroAgencia, nomeAgencia);
+                    System.out.println("Alteração de dados");
+                    System.out.println("*****************");
+                    System.out.println("Digite o nome do cliente : ");
+                    nome = scan.next();
+                    System.out.println("Digite o novo numero : ");
+                    numeroAgencia = scan.next();
+                    System.out.println("Digite o nome da nova agencia : ");
+                    nomeAgencia = scan.next();
+
+                    conta.alterarDadosConta(nome, numeroAgencia, nomeAgencia);
+
+                } else {
+
+                    System.out.println("Alteração de dados");
+                    System.out.println("*****************");
+                    System.out.println("Digite o nome do cliente : ");
+                    nome = scan.next();
+                    System.out.println("Digite o novo numero : ");
+                    numeroAgencia = scan.next();
+                    System.out.println("Digite o nome da nova agencia : ");
+                    nomeAgencia = scan.next();
+
+                    p.alterarDadosConta(nome, numeroAgencia, nomeAgencia);
+
+                }
 
             }
 

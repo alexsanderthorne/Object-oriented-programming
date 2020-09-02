@@ -62,7 +62,7 @@ public class Poupanca extends Conta {
 
     }
 
-    public void renderJuros(String cpf, double juros) throws Exception {
+    public void renderJuros(String cpf, double juros) {
 
         if (contasPoupancas.size() > 0) {
 
@@ -84,6 +84,31 @@ public class Poupanca extends Conta {
                 }
             }
         }
+    }
+
+    public void alterarDadosConta(String nome, String numeroAgencia, String nomeAgencia) {
+
+        if (contasPoupancas.size() > 0) {
+
+            for (int i = 0; i < contasPoupancas.size(); i++) {
+                
+                if ((clientesP).get(i).getNome().equals(nome)) {
+                    System.out.println("Teste");
+
+                    contasPoupancas.get(i).setNumeroAgencia(numeroAgencia);
+                    contasPoupancas.get(i).setNomeAgencia(nomeAgencia);
+                    System.out.println(contasPoupancas.get(i).getNumeroAgencia());
+                    System.out.println(contasPoupancas.get(i).getNomeAgencia());
+                    System.out.println("DADOS ATUALIZADOs.");
+
+                }
+            }
+
+        } else {
+
+            System.out.println("Não possui contas cadastradas.");
+        }
+
     }
 
     public void consultarPoupanca(String num, String name) throws Exception {
