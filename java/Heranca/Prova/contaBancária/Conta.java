@@ -1,143 +1,20 @@
-import java.util.ArrayList;
 import java.util.Objects;
 
-public class Conta extends Banco {
+public class Conta {
 
     private String numero;
     private Banco banco;
     private Cliente c;
     private double saldo;
 
-    private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-    private ArrayList<Conta> contas = new ArrayList<Conta>();
-    // ArrayList<Poupanca> contasPoupancas = new ArrayList<Poupanca>();
-
     public Conta() {
     }
 
-    public Conta(String numero, String numeroAgencia, String nomeAgencia, Banco banco, Cliente c, double saldo,
-            ArrayList<Cliente> clientes, ArrayList<Conta> contas) {
-        super(numeroAgencia, nomeAgencia);
+    public Conta(String numero, Banco banco, Cliente c, double saldo) {
         this.numero = numero;
         this.banco = banco;
         this.c = c;
         this.saldo = saldo;
-        this.clientes = clientes;
-        this.contas = contas;
-    }
-
-    public void cadastrarConta(String numero, String numeroAgencia, String nomeAgencia, String nome, String cpf,
-            double saldo) {
-
-        do {
-
-            clientes.add(new Cliente(nome, cpf));
-            contas.add(new Conta(numero, numeroAgencia, nomeAgencia, banco, c, saldo, clientes, contas));
-
-        } while (contas.size() > 5);
-        System.out.println(contas.size());
-
-    }
-
-    public void depositarConta(String cpf, double valor) throws Exception {
-
-        if (contas.size() > 0) {
-
-            try {
-
-                for (int i = 0; i < contas.size(); i++) {
-
-                    if (clientes.get(i).getCpf().equals(cpf)) {
-                        // this.saldo = this.getSaldo() + valor;
-                        System.out.println("saldo : " + contas.get(i).getSaldo());
-                        contas.get(i).setSaldo(contas.get(i).getSaldo() + valor);
-                        System.out.println("Deposito realizado!!!");
-                        System.out.println("saldo : " + contas.get(i).getSaldo());
-                    }
-                }
-
-            } catch (Exception e) {
-
-                System.err.println("\nException : %s\n" + e.getMessage());
-                System.out.println("Conta não encontrada");
-            }
-
-        } else {
-
-            System.out.println("Conta não cadastrada!.");
-        }
-    }
-
-    public void alterarDadosConta(String nome, String numeroAgencia, String nomeAgencia) {
-
-        if (contas.size() > 0) {
-
-            for (int i = 0; i < contas.size(); i++) {
-
-                if ((clientes).get(i).getNome().equals(nome)) {
-                   
-                    contas.get(i).setNumeroAgencia(numeroAgencia);
-                    contas.get(i).setNomeAgencia(nomeAgencia);
-                    System.out.println(contas.get(i).getNumeroAgencia());
-                    System.out.println(contas.get(i).getNomeAgencia());
-                    System.out.println("DADOS ATUALIZADOs.");
-
-                }
-            }
-
-        } else {
-
-            System.out.println("Não possui contas cadastradas.");
-        }
-
-    }
-
-    public void consultarConta(String num, String name) throws Exception {
-
-        if (contas.size() > 0) {
-
-            try {
-
-                for (int i = 0; i < contas.size(); i++) {
-
-                    if (contas.get(i).getNumeroAgencia().equals(num) && contas.get(i).getNomeAgencia().equals(name)) {
-
-                        System.out.println("NomeCliente : " + clientes.get(i).getNome() + " CpfCliente : "
-                                + clientes.get(i).getCpf());
-
-                    }
-
-                }
-
-            } catch (NullPointerException nullPointerException) {
-
-                System.err.println("\nException : %s\n" + nullPointerException);
-                System.out.println("Conta não encontrada");
-            }
-
-        } else {
-
-            System.out.println("Conta não cadastrada!.");
-        }
-
-    }
-
-    public void listarContas() {
-
-        try {
-
-            for (int i = 0; i < contas.size(); i++) {
-
-                System.out.println("Dados da conta : " + contas.get(i).toString());
-
-            }
-
-        } catch (NullPointerException r) {
-
-            System.out.println("Não há contas cadastradas!");
-
-        }
-
     }
 
     public String getNumero() {
@@ -172,22 +49,6 @@ public class Conta extends Banco {
         this.saldo = saldo;
     }
 
-    public ArrayList<Cliente> getClientes() {
-        return this.clientes;
-    }
-
-    public void setClientes(ArrayList<Cliente> clientes) {
-        this.clientes = clientes;
-    }
-
-    public ArrayList<Conta> getContas() {
-        return this.contas;
-    }
-
-    public void setContas(ArrayList<Conta> contas) {
-        this.contas = contas;
-    }
-
     public Conta numero(String numero) {
         this.numero = numero;
         return this;
@@ -208,16 +69,6 @@ public class Conta extends Banco {
         return this;
     }
 
-    public Conta clientes(ArrayList<Cliente> clientes) {
-        this.clientes = clientes;
-        return this;
-    }
-
-    public Conta contas(ArrayList<Conta> contas) {
-        this.contas = contas;
-        return this;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -227,19 +78,18 @@ public class Conta extends Banco {
         }
         Conta conta = (Conta) o;
         return Objects.equals(numero, conta.numero) && Objects.equals(banco, conta.banco) && Objects.equals(c, conta.c)
-                && saldo == conta.saldo && Objects.equals(clientes, conta.clientes)
-                && Objects.equals(contas, conta.contas);
+                && saldo == conta.saldo;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(numero, banco, c, saldo, clientes, contas);
+        return Objects.hash(numero, banco, c, saldo);
     }
 
     @Override
     public String toString() {
-        return "{" + " numero='" + getNumero() + "'" + " numeroAgencia='" + getNumeroAgencia() + "'" + ", nomeAgencia='"
-                + getNomeAgencia() + "'" + " saldo='" + getSaldo() + ", clientes='" + getClientes() + "'" + "'" + "}";
+        return "{" + " Numero='" + getNumero() + "'" + ", Banco='" + getBanco() + "'" + ", Cliente='" + getC() + "'"
+                + ", saldo='" + getSaldo() + "'" + "}";
     }
 
 }

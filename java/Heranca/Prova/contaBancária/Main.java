@@ -1,16 +1,17 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] Args) throws Exception {
+    public static void main(String[] Args) {
+
+        Scanner scan = new Scanner(System.in);
 
         boolean check = true;
         String numero, numeroAgencia, nomeAgencia, nome, cpf;
         double saldo = 0, juros = 0;
-        Scanner scan = new Scanner(System.in);
 
-        Conta conta = new Conta();
-        Poupanca p = new Poupanca();
+        ArrayList<Conta> contas = new ArrayList<Conta>();
 
         while (check) {
 
@@ -48,7 +49,11 @@ public class Main {
                     cpf = scan.next();
                     saldo = 0;
 
-                    conta.cadastrarConta(numero, numeroAgencia, nomeAgencia, nome, cpf, saldo);
+                    Banco banco = new Banco(numeroAgencia, nomeAgencia);
+                    Cliente c = new Cliente(nome, cpf);
+
+                    contas.add(new Conta(numero, banco, c, saldo));
+
                     System.out.println("Conta cadastrada com sucesso!");
 
                 } else if (tipoConta == 2) {
@@ -66,138 +71,119 @@ public class Main {
                     saldo = 0;
                     juros = 10;
 
-                    p.cadastrarPoupanca(numero, numeroAgencia, nomeAgencia, nome, cpf, saldo, juros);
+                    Banco banco = new Banco(numeroAgencia, nomeAgencia);
+                    Cliente c = new Cliente(nome, cpf);
+
+                    contas.add(new Poupanca(numero, banco, c, saldo, juros));
+
                     System.out.println("Conta cadastrada com sucesso!");
 
                 }
 
             } else if (op == 2) {
 
-                int tipoConta = 0;
-                System.out.println("Digite 1 para depositar na Conta - 2 Conta poupança");
-                tipoConta = scan.nextInt();
-
-                if (tipoConta == 1) {
+                if (contas.size() > 0) {
 
                     System.out.println("Digite o cpf : ");
                     cpf = scan.next();
 
-                    System.out.println("Digite o valor a ser depositado : ");
-                    double valor = scan.nextDouble();
+                    for (int i = 0; i < contas.size(); i++) {
 
-                    conta.depositarConta(cpf, valor);
+                        if (contas.get(i) != null && (contas.get(i) instanceof Poupanca)) {// it's working
 
-                } else if (tipoConta == 2) {
+                            if (contas.get(i).getC().getCpf().equals(cpf)) {
 
-                    System.out.println("Digite o cpf : ");
-                    cpf = scan.next();
+                                System.out.println("Digite o valor a ser depositado : ");
+                                double valor = scan.nextDouble();
 
-                    System.out.println("Digite o valor a ser depositado : ");
-                    double valor = scan.nextDouble();
+                                System.out.println("Saldo : " + contas.get(i).getSaldo());
+                                contas.get(i).setSaldo(contas.get(i).getSaldo() + valor);
+                                System.out.println("Depósito realizado!");
+                                System.out.println(
+                                        "Saldo da poupança atualizado : " + ((Poupanca) contas.get(i)).getSaldo());
 
-                    p.depositarPoupanca(cpf, valor);
+                            }
 
+                        } else {
+
+                            if (contas.get(i).getC().getCpf().equals(cpf)) {
+
+                                System.out.println("Digite o valor a ser depositado : ");
+                                double valor = scan.nextDouble();
+
+                                System.out.println("Saldo : " + contas.get(i).getSaldo());
+                                contas.get(i).setSaldo(contas.get(i).getSaldo() + valor);
+                                System.out.println("Depósito realizado!");
+                                System.out.println("Saldo atualizado : " + contas.get(i).getSaldo());
+
+                            }
+                        }
+                    }
+
+                } else {
+
+                    System.out.println("Não há contas cadastradas!");
                 }
 
             } else if (op == 3) {
 
-                System.out.println("Digite o cpf : ");
-                cpf = scan.next();
-                juros = 100;
+                if (contas.size() > 0) {
 
-                p.renderJuros(cpf, juros);
+                    System.out.println("Digite o cpf : ");
+                    cpf = scan.next();
+
+                    for (int i = 0; i < contas.size(); i++) {
+
+                        if (contas.get(i) != null && (contas.get(i) instanceof Poupanca)) {
+
+                            if (contas.get(i).getC().getCpf().equals(cpf)) {
+
+                                System.out.println("Digite o valor a ser depositado : ");
+                                double valor = scan.nextDouble();
+
+                                System.out.println("Saldo : " + contas.get(i).getSaldo());
+                                System.out.println("Dia de rendimento!");
+                                System.out.println("Saldo da poupança atualizado : "
+                                        + ((Poupanca) contas.get(i)).renderJuros(valor));
+
+                            }
+
+                        }
+                    }
+                }
 
             } else if (op == 4) {
 
-                int tipoConta = 0;
-                System.out.println("Digite 1 para Consultar a Conta - 2 Conta poupança");
-                tipoConta = scan.nextInt();
-
-                if (tipoConta == 1) {
+                if (contas.size() > 0) {
 
                     System.out.println("Digite o n° da agencia : ");
-                    String num = scan.next();
+                    numeroAgencia = scan.next();
                     System.out.println("Digite o nome da agencia : ");
-                    String name = scan.next();
+                    nomeAgencia = scan.next();
 
-                    System.out.println("Buscando dados");
-                    System.out.println("... ... ...");
+                    for (Conta conta : contas) {
 
-                    conta.consultarConta(num, name);
-                    scan.nextLine();
+                        if (conta.getBanco().getNumeroAgencia().equals(numeroAgencia)
+                                & conta.getBanco().getNomeAgencia().equals(nomeAgencia)) {
+
+                            System.out.println("Nome : " + conta.getC().getNome() + "\nCpf : " + conta.getC().getCpf());
+                        }
+
+                    }
 
                 } else {
 
-                    System.out.println("Digite o n° da agencia : ");
-                    String num = scan.next();
-                    System.out.println("Digite o nome da agencia : ");
-                    String name = scan.next();
-
-                    System.out.println("Buscando dados");
-                    System.out.println("... ... ...");
-
-                    p.consultarPoupanca(num, name);
-                    scan.nextLine();
-
+                    System.out.println("Conta não cadastrada!");
                 }
 
-            }
+            } else if (op == 6) {
 
-            else if (op == 5) {
+                System.out.println("Listar contas");
+                System.out.println("*************");
 
-                System.out.println("Digite 1 para Alterar os dados da Conta - 2 Conta poupança");
-                int tipo_conta = scan.nextInt();
-                
-                if (tipo_conta == 1) {
+                for (int i = 0; i < contas.size(); i++) {
 
-                    System.out.println("Alteração de dados");
-                    System.out.println("*****************");
-                    System.out.println("Digite o nome do cliente : ");
-                    nome = scan.next();
-                    System.out.println("Digite o novo numero : ");
-                    numeroAgencia = scan.next();
-                    System.out.println("Digite o nome da nova agencia : ");
-                    nomeAgencia = scan.next();
-
-                    conta.alterarDadosConta(nome, numeroAgencia, nomeAgencia);
-
-                } else {
-
-                    System.out.println("Alteração de dados");
-                    System.out.println("*****************");
-                    System.out.println("Digite o nome do cliente : ");
-                    nome = scan.next();
-                    System.out.println("Digite o novo numero : ");
-                    numeroAgencia = scan.next();
-                    System.out.println("Digite o nome da nova agencia : ");
-                    nomeAgencia = scan.next();
-
-                    p.alterarDadosConta(nome, numeroAgencia, nomeAgencia);
-
-                }
-
-            }
-
-            else if (op == 6) {
-
-                int tipo_conta = 0;
-
-                System.out.println("Digite a conta a qual deseja consultar '1' conta - '2' Poupança");
-                tipo_conta = scan.nextInt();
-
-                if (tipo_conta == 1) {
-
-                    System.out.println("Listar contas");
-                    System.out.println("*************");
-                    conta.listarContas();
-
-                }
-
-                if (tipo_conta == 2) {
-
-                    System.out.println("Listar contas poupança");
-                    System.out.println("*************");
-                    p.listarPoupanca();
+                    System.out.println(contas.get(i).toString());
                 }
 
             } else if (op == 0) {
