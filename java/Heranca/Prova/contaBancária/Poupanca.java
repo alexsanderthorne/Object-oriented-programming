@@ -13,7 +13,7 @@ public class Poupanca extends Conta {
     }
 
     public double renderJuros(double valor){
-        return this.juros = this.getJuros() + valor;
+        return this.juros = this.getJuros() + (this.getJuros() * valor);
     }
 
     public double getJuros() {
@@ -47,7 +47,7 @@ public class Poupanca extends Conta {
 
     @Override
     public String toString() {
-        return "{" + " Numero='" + getNumero() + "'" + ", Banco='" + getBanco() + "'" + ", Cliente='" + getC() + "'"
+        return "{" + " Poupança: Numero='" + getNumero() + "'" + ", Banco='" + getBanco() + "'" + ", Cliente='" + getC() + "'"
         + ", saldo='" + getSaldo() + "'" + " juros='" + getJuros() + "'" + "}";
     }
 
