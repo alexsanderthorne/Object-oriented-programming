@@ -33,6 +33,11 @@ public class Main {
 
                 boolean continua = true;
 
+                int tipoConta = 0;
+                System.out.println("Digite '1' para Conta normal; '2' para Conta poupança; ");
+                tipoConta = scan.nextInt();
+
+
                 while (continua) {
 
                     if (contas.size() <= 9) {
@@ -43,6 +48,7 @@ public class Main {
                         tipoConta = scan.nextInt();
 
                         if (tipoConta == 1) {
+
 
                             System.out.println("Digite o número da conta : ");
                             numero = scan.next();
@@ -55,6 +61,7 @@ public class Main {
                             System.out.println("Digite o cpf do titular : ");
                             cpf = scan.next();
                             saldo = 0;
+
 
                             Banco banco = new Banco(numeroAgencia, nomeAgencia);
                             Cliente c = new Cliente(nome, cpf);
@@ -87,8 +94,10 @@ public class Main {
 
                         } else if (tipoConta == 0) {
 
+
                             System.out.println("... ... ...");
                             continua = false;
+
 
                         }
 
@@ -163,6 +172,14 @@ public class Main {
                                 System.out.println("Saldo da poupança atualizado : "
                                         + ((Poupanca) contas.get(i)).renderJuros() + "\n");
 
+                                double valor = 0.1;
+
+                                System.out.println("Saldo : " + contas.get(i).getSaldo());
+                                System.out.println("Dia de rendimento!");
+                                System.out.println("Saldo da poupança atualizado : "
+                                        + ((Poupanca) contas.get(i)).renderJuros(valor) + "\n");
+
+
                             }
 
                         }
@@ -194,7 +211,7 @@ public class Main {
                     System.out.println("Não há conta cadastrada!\n");
                 }
 
-            } else if (op == 5) {
+            else if (op == 5) {
 
                 if (contas.size() > 0) {
 
@@ -241,6 +258,7 @@ public class Main {
                     System.out.println("Não há conta cadastrada!\n");
 
                 }
+
 
             } else if (op == 6) {
 

@@ -88,7 +88,7 @@ public class Conta {
 
     @Override
     public String toString() {
-        return "{" + " Numero='" + getNumero() + "'" + ", Banco='" + getBanco() + "'" + ", Cliente='" + getC() + "'"
+        return "{" + " Conta: Numero='" + getNumero() + "'" + ", Banco='" + getBanco() + "'" + ", Cliente='" + getC() + "'"
                 + ", saldo='" + getSaldo() + "'" + "}";
     }
 
