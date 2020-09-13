@@ -12,8 +12,9 @@ public class Poupanca extends Conta {
     public Poupanca() {
     }
 
-    public double renderJuros(double valor){
-        return this.juros = this.getJuros() + (this.getJuros() * valor);
+
+    public double renderJuros(){
+        return this.getSaldo() + (this.getSaldo() * this.getJuros());
     }
 
     public double getJuros() {
